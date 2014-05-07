@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import thevoid.common.TheVoid;
+import thevoid.common.dimension.biome.BiomeGraveyard;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -211,6 +212,7 @@ public class ChunkProviderVoid implements IChunkProvider
             for (int l = 0; l < 16; ++l)
             {
                 BiomeGenBase biomegenbase = p_147422_5_[l + k * 16];
+                BiomeGraveyard g =  (BiomeGraveyard) p_147422_5_[l + k * 16];
                 biomegenbase.genTerrainBlocks(this.worldObj, this.rand, p_147422_3_, p_147422_4_, p_147422_1_ * 16 + k, p_147422_2_ * 16 + l, this.stoneNoise[l + k * 16]);
             }
         }

@@ -26,68 +26,81 @@ public class WorldProviderVoid extends WorldProvider
 	private static final String MO = new String("void:BloodMoon.png");
     protected IRenderHandler skyRendererVoid = null;
 
-	
 	public void registerWorldChunkManager()
-	{
-		this.worldChunkMgr = new WorldChunkManagerHell(TheVoid.biomeGraveYard, this.dimensionId);
-		this.dimensionId = TheVoid.dimensionId;
-		this.hasNoSky = false;
-	}
-	
+{
+this.worldChunkMgr = new WorldChunkManagerHell(TheVoid.biomeGraveYard, this.dimensionId);
+this.dimensionId = TheVoid.dimensionId;
+this.hasNoSky = true;
+}
+
     @SideOnly(Side.CLIENT)
     public IRenderHandler getSkyRenderer()
     {
         return this.skyRendererVoid;
     }
     
+    @SideOnly(Side.CLIENT)
 
+    /**
+* Returns true if the given X,Z coordinate should show environmental fog.
+*/
+    public boolean doesXZShowFog(int par1, int par2)
+    {
+        return true;
+    }
 
     @SideOnly(Side.CLIENT)
     public void setSkyRenderer(IRenderHandler skyRenderer)
     {
         this.skyRendererVoid = skyRenderer;
     }
-	
-	public IChunkProvider createChunkGenerator()
-	{
-		return new ChunkProviderVoid(this.worldObj, this.worldObj.getSeed(), false);
-	}
-	
-	public int getAverageGroundLevel()
-	{
-		return 0;
-	}
-	
-	public String getDimensionName()
-	{
-		return "The Void";
-	}
-	
-	public boolean renderStars()
-	{
-		return true;
-	}
-	
-	public float getStarBrightness(World world, float f)
-	{
-		return 10.0F;
-	}
-	
-	public boolean renderClouds()
-	{
-		return true;
-	}
-	
-	public boolean renderVoidFog()
-	{
-		return false;
-	}
 
-	public boolean canRespawnHere()
-	{
-		return false;
-	}
-	
+public IChunkProvider createChunkGenerator()
+{
+return new ChunkProviderVoid(this.worldObj, this.worldObj.getSeed(), false);
+}
+
+public int getAverageGroundLevel()
+{
+return 0;
+}
+
+public String getDimensionName()
+{
+return "The Void";
+}
+
+public boolean renderStars()
+{
+return true;
+}
+
+public float getStarBrightness(World world, float f)
+{
+return 10.0F;
+}
+
+public boolean renderClouds()
+{
+return true;
+}
+
+public boolean renderVoidFog()
+{
+return false;
+}
+
+    @SideOnly(Side.CLIENT)
+    public boolean isSkyColored()
+    {
+        return false;
+    }
+
+public boolean canRespawnHere()
+{
+return false;
+}
+
     public float calculateCelestialAngle(long par1, float par3)
     {
         return 0.0F;
@@ -96,71 +109,61 @@ public class WorldProviderVoid extends WorldProvider
     @SideOnly(Side.CLIENT)
 
     /**
-     * Returns array with sunrise/sunset colors
-     */
+* Returns array with sunrise/sunset colors
+*/
     public float[] calcSunriseSunsetColors(float par1, float par2)
     {
         return null;
     }
-	
-	@SideOnly(Side.CLIENT)
-	public float getCloudHeight()
-	{
-		return 128.0F;
-	}
-	
 
-	@SideOnly(Side.CLIENT)
-	public static String getSunTexture()
-	{
-		return "/void:DarkDay.png";
-	}
-	
-	
-	@SideOnly(Side.CLIENT)
-	public static String getMoonTexture()
-	{
-		return "/void:BloodMoon.png";		
-	}
-	public boolean canCoordinateBeSpawn(int par1, int par2)
-	{
-		return false;
-	}
-	
-	public ChunkCoordinates getEntrancePortalLocation()
-	{
-		return new ChunkCoordinates(50, 5, 0);
-	}
-	
-	public boolean isSurfaceWorld()
-	{
-	return true;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public boolean isSkyColored()
-	{
-	return true;
-	}
+@SideOnly(Side.CLIENT)
+public float getCloudHeight()
+{
+return 128.0F;
+}
 
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public String getWelcomeMessage()
-	{
-	if ((this instanceof WorldProviderVoid))
-	{
-	return "Entering Tut Dimension";
-	}
-	return null;
-	}
+@SideOnly(Side.CLIENT)
+public String getSunTexture()
+{
+return SR;
+}
 
-	
+@SideOnly(Side.CLIENT)
+public String getMoonTexture()
+{
+return MO;	
+}
+public boolean canCoordinateBeSpawn(int par1, int par2)
+{
+return false;
+}
 
-	
+public ChunkCoordinates getEntrancePortalLocation()
+{
+return new ChunkCoordinates(50, 5, 0);
+}
+
+public boolean isSurfaceWorld()
+{
+return false;
+}
+
+@SideOnly(Side.CLIENT)
+@Override
+public String getWelcomeMessage()
+{
+if ((this instanceof WorldProviderVoid))
+{
+return "Entering The Void";
+}
+return null;
+}
+
+
+
     /**
-     * Return Vec3D with biome specific fog color
-     */
+* Return Vec3D with biome specific fog color
+*/
     public Vec3 getFogColor(float par1, float par2)
     {
         int i = 10518688;
@@ -176,13 +179,14 @@ public class WorldProviderVoid extends WorldProvider
             f2 = 1.0F;
         }
 
-        float f3 = 0.7529412F;
-        float f4 = 0.84705883F;
-        float f5 = 0.1F;
+        float f3 = 0.0529412F;
+        float f4 = 0.0705883F;
+        float f5 = 0.01F;
         f3 *= f2 * 0.0F + 0.15F;
         f4 *= f2 * 0.0F + 0.15F;
         f5 *= f2 * 0.0F + 0.15F;
         return this.worldObj.getWorldVec3Pool().getVecFromPool((double)f3, (double)f4, (double)f5);
     }
+
 
 }

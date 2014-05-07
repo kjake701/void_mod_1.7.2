@@ -93,7 +93,8 @@ public class WorldGenRedWood extends WorldGenAbstractTree
                 Block block2 = par1World.getBlock(par3, par4 - 1, par5);
 
                 boolean isSoil = block2.canSustainPlant(par1World, par3, par4 - 1, par5, ForgeDirection.UP, (BlockSapling)Blocks.sapling);
-                if (isSoil && par4 < 256 - l - 1)
+                Block isGGrass = TheVoid.graveYardGrass;
+                if (isGGrass == TheVoid.graveYardGrass && par4 < 256 - l - 1)
                 {
                     block2.onPlantGrow(par1World, par3, par4 - 1, par5, par3, par4, par5);
                     b0 = 3;
@@ -141,22 +142,22 @@ public class WorldGenRedWood extends WorldGenAbstractTree
                             {
                                 if (par2Random.nextInt(3) > 0 && par1World.isAirBlock(par3 - 1, par4 + k1, par5))
                                 {
-                                    this.setBlockAndNotifyAdequately(par1World, par3 - 1, par4 + k1, par5, Blocks.vine, 8);
+                                    this.setBlockAndNotifyAdequately(par1World, par3 - 1, par4 + k1, par5, TheVoid.unknownFlesh, 8);
                                 }
 
                                 if (par2Random.nextInt(3) > 0 && par1World.isAirBlock(par3 + 1, par4 + k1, par5))
                                 {
-                                    this.setBlockAndNotifyAdequately(par1World, par3 + 1, par4 + k1, par5, Blocks.vine, 2);
+                                    this.setBlockAndNotifyAdequately(par1World, par3 + 1, par4 + k1, par5, TheVoid.unknownFlesh, 2);
                                 }
 
                                 if (par2Random.nextInt(3) > 0 && par1World.isAirBlock(par3, par4 + k1, par5 - 1))
                                 {
-                                    this.setBlockAndNotifyAdequately(par1World, par3, par4 + k1, par5 - 1, Blocks.vine, 1);
+                                    this.setBlockAndNotifyAdequately(par1World, par3, par4 + k1, par5 - 1, TheVoid.unknownFlesh, 1);
                                 }
 
                                 if (par2Random.nextInt(3) > 0 && par1World.isAirBlock(par3, par4 + k1, par5 + 1))
                                 {
-                                    this.setBlockAndNotifyAdequately(par1World, par3, par4 + k1, par5 + 1, Blocks.vine, 4);
+                                    this.setBlockAndNotifyAdequately(par1World, par3, par4 + k1, par5 + 1, TheVoid.unknownFlesh, 4);
                                 }
                             }
                         }
@@ -234,7 +235,7 @@ public class WorldGenRedWood extends WorldGenAbstractTree
      */
     private void growVines(World par1World, int par2, int par3, int par4, int par5)
     {
-        this.setBlockAndNotifyAdequately(par1World, par2, par3, par4, Blocks.vine, par5);
+        this.setBlockAndNotifyAdequately(par1World, par2, par3, par4, TheVoid.unknownFlesh, par5);
         int i1 = 4;
 
         while (true)
@@ -246,7 +247,7 @@ public class WorldGenRedWood extends WorldGenAbstractTree
                 return;
             }
 
-            this.setBlockAndNotifyAdequately(par1World, par2, par3, par4, Blocks.vine, par5);
+            this.setBlockAndNotifyAdequately(par1World, par2, par3, par4, TheVoid.unknownFlesh, par5);
             --i1;
         }
     }

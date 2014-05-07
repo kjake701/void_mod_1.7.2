@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 public class VoidMineralGlowingBlock extends Block
 {
     private boolean glowing;
-    private static final String VMG = "rs:SuspiciousBlockLit";
+    private static final String VMG = "VOID:SuspiciousBlockLit";
 
     public VoidMineralGlowingBlock(int id, int texture, boolean par3)
     {

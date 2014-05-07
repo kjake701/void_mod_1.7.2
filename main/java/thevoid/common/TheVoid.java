@@ -15,6 +15,7 @@ import thevoid.common.blocks.BlockRedStoneCrystal;
 import thevoid.common.blocks.BlockRedStoneCrystalGlowing;
 import thevoid.common.blocks.BlockRedWoodSapling;
 import thevoid.common.blocks.BlockSpoooooky;
+import thevoid.common.blocks.BlockUnknownFlesh;
 import thevoid.common.blocks.BlockVoidPortal;
 import thevoid.common.blocks.RedWoodLeaves;
 import thevoid.common.blocks.RedWoodPlanks;
@@ -97,16 +98,15 @@ public class TheVoid
 	public static final String modid = "the_void";
 	
 	public IIcon iconGrassSideOverlay;
-	
-	//Biomes
-	public static final BiomeGraveyard biomeGraveYard = new BiomeGraveyard(BID.BiomeID_1);
-	
+
 	//More Blocks
 	
 	public static Block voidFire;
 	
 	public static Block voidPortal;
 
+	public static Block graveYardDirt;
+	
 	public static Block deadCobbleStone;
 	
 	public static Block graveYardGrass;
@@ -118,8 +118,6 @@ public class TheVoid
 	public static Block spoooooky;
 	
 	public static Block spoooookyLantern;
-	
-	public static Block graveYardDirt;
 	
 	public static Block rLog;
 	
@@ -144,6 +142,8 @@ public class TheVoid
 	public static Block redWoodSapling;
 	
 	public static Block blackDiamondOre;
+	
+	public static Block unknownFlesh;
 	    //Block ints
 	    public static int blackDiamondOreInt;
 	
@@ -180,6 +180,10 @@ public class TheVoid
 	public static Item blackDiamond;
 	    //Item ints
 	    public static int blackDiamondInt;
+	    
+	    //Biomes
+	public static BiomeGenBase biomeGraveYard;
+	
 
 	//Proxy
 	@SidedProxy(clientSide = "thevoid.common.util.ClientProxyBlackDiamond", serverSide = "thevoid.common.util.CommonProxyBlackDiamond")
@@ -192,6 +196,8 @@ public class TheVoid
 		
 		//Blocks
 		
+		unknownFlesh = new BlockUnknownFlesh().setHardness(0.2F).setStepSound(Block.soundTypeGrass).setBlockName("unknownFlesh2").setBlockTextureName("void:UnknownFlesh");
+		
 		voidFire = (blockVoidFire)new blockVoidFire().setBlockName("Void_Fire").setLightLevel(0.8F).setBlockTextureName("void:void_fire");
 		
 		voidPortal = (BlockVoidPortal)new BlockVoidPortal().setHardness(15).setBlockUnbreakable().setBlockTextureName("VOID:").setBlockName("Block Void Portal");
@@ -200,6 +206,8 @@ public class TheVoid
 		
 		graveYardGrass = new BlockGraveYardGrass(160).setStepSound(Block.soundTypeGrass).setHardness(0.5F).setBlockName("graveYardGrass").setBlockTextureName("void:GYG");
 		
+		graveYardDirt = new BlockGraveYardDirt(212).setHardness(0.6f).setStepSound(Block.soundTypeGravel).setBlockName("Grave Yard Dirt").setBlockTextureName("VOID:GraveYardDirt");
+		
 		deadStone = new BlockDeadStone(161).setStepSound(Block.soundTypeStone).setHardness(1.5F).setBlockName("Dead Stone").setBlockTextureName("VOID:DeadStone2");
 		
 		deadStoneBrick = new BlockDeadStoneBrick(165).setStepSound(Block.soundTypeStone).setHardness(1.5F).setBlockName("Dead Stone Brick").setBlockTextureName("VOID:StoneBrick");
@@ -207,16 +215,14 @@ public class TheVoid
 		spoooooky = new BlockSpoooooky(2078, false).setStepSound(Block.soundTypeWood).setHardness(1.0F).setBlockName("Spoooooky").setBlockTextureName("VOID:");
 		
 		spoooookyLantern = new BlockSpoooooky(2080, true).setHardness(1.0F).setStepSound(Block.soundTypeWood).setLightLevel(1.5F).setBlockName("Spoooooky").setBlockTextureName("VOID:");
-		
-		graveYardDirt = new BlockGraveYardDirt(212).setHardness(0.6f).setStepSound(Block.soundTypeGravel).setBlockName("Grave Yard Dirt").setBlockTextureName("VOID:GraveYardDirt");
-		
+				
 	    rLog = new BlockRLog().setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("Dead Wood Log").setBlockTextureName("void:");
 		
-		redWoodLeaves = new RedWoodLeaves(1000).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setBlockName("Dead Wood Leaves").setBlockTextureName("VOID:BoneLeaves2");
+		redWoodLeaves = new RedWoodLeaves(1000).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setBlockName("Dead Wood Leaves").setBlockTextureName("VOID:BoneLeaves");
 		
 		voidMineralBlock = new VoidMineralBlock(2081, 12, false).setHardness(1.0F).setStepSound(Block.soundTypeStone).setBlockName("Suspicious Looking Block").setBlockTextureName("VOID:SuspiciousBlock");
 		
-		voidMineralGlowingBlock = new VoidMineralGlowingBlock(2082, 12, true).setHardness(1.0F).setStepSound(Block.soundTypeStone).setLightLevel(1.0F).setBlockName("Suspicious Glowing Block").setBlockTextureName("VOID:SuspiciousBlockLit");
+		voidMineralGlowingBlock = new VoidMineralGlowingBlock(2082, 12, true).setHardness(1.0F).setStepSound(Block.soundTypeStone).setLightLevel(5.0F).setBlockName("Suspicious Glowing Block").setBlockTextureName("VOID:SuspiciousBlockLit");
 				
 		redStoneCrystalOre = new BlockRedStoneCrystal(573, 11, false).setHardness(12.0F).setResistance(10.0F).setStepSound(Block.soundTypeStone).setBlockName("Red Stone Crystal Ore").setBlockTextureName("void:RedStoneCrystalOre");
 		
@@ -256,7 +262,7 @@ public class TheVoid
 
 	
 	//ores gen
-	
+	GameRegistry.registerWorldGenerator(new DeadTreeGen(), 0);
 	GameRegistry.registerWorldGenerator(new DeadBrickGraveGen(), 0);
 	GameRegistry.registerWorldGenerator(new VoidMineralGen(), 0);
 	GameRegistry.registerWorldGenerator(new BDWorldGen(), 0);
@@ -272,6 +278,7 @@ public class TheVoid
 	DimensionManager.registerDimension(TheVoid.dimensionId, TheVoid.dimensionId);
 	
 	//Blocks
+	GameRegistry.registerBlock(unknownFlesh, "Unknown Flesh");
 	GameRegistry.registerBlock(voidPortal, "Void Portal");
 	GameRegistry.registerBlock(voidFire, "Void Fire");
 	GameRegistry.registerBlock(voidMineralBlock, "Void Mineral Block");
@@ -301,8 +308,6 @@ public class TheVoid
 	GameRegistry.registerItem(redStonePick, "Red Stone Pick");
 	GameRegistry.registerItem(redStoneCrystal, "Red Stone Crystal");
 	GameRegistry.registerItem(blackDiamond, "Black Diamond");
-	
-
 	
 	//Recipes
 	
@@ -380,6 +385,7 @@ public class TheVoid
 	
 	GameRegistry.addRecipe(new ItemStack(TheVoid.redStoneSword, 1), new Object[]{"SGS", "SGS", " O ", 'G', TheVoid.blackDiamond, 'S', TheVoid.redStoneCrystal, 'O', Items.stick});
 	//Entities
+	 biomeGraveYard = (new BiomeGraveyard(50)).setColor(0x000000);
 	
 	 EntityRegistry.registerModEntity(EntityKitty.class, "Kitty", 1, this, 80, 3, true);
 	 
@@ -388,7 +394,7 @@ public class TheVoid
 				BiomeGenBase.extremeHills, BiomeGenBase.extremeHillsEdge, BiomeGenBase.forest, BiomeGenBase.forestHills,
 				BiomeGenBase.jungle,              BiomeGenBase.jungleHills,               BiomeGenBase.mushroomIsland,
 				BiomeGenBase.mushroomIslandShore,    BiomeGenBase.ocean,     BiomeGenBase.plains, BiomeGenBase.river,
-				BiomeGenBase.swampland);
+				BiomeGenBase.swampland, TheVoid.biomeGraveYard);
 	 
 	 LanguageRegistry.instance().addStringLocalization("entity.kjake701_RandomStuff.Kitty.name", "Kitty");
 	 
@@ -412,14 +418,11 @@ public static void registerEntityEgg(Class<? extends Entity> entity, int primary
  int id = getUniqueEntityId();
  EntityList.IDtoClassMapping.put(id, entity);
  EntityList.addMapping(EntityKitty.class, "Kitty", 5, 113213, 3523523);
+ 
 }
 	
 	
-	
-	@EventHandler
-	public void load(FMLInitializationEvent event)
-	{	
-	}
+
 
 
 	

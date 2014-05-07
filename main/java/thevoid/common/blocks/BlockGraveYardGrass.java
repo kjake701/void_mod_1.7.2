@@ -7,13 +7,18 @@ import java.util.Random;
 
 import thevoid.common.TheVoid;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockGraveYardGrass extends Block
 {
@@ -103,7 +108,8 @@ public class BlockGraveYardGrass extends Block
     {
         this.blockIcon = p_149651_1_.registerIcon(this.getTextureName() + "_side");
         this.field_149991_b = p_149651_1_.registerIcon(this.getTextureName() + "_top");
-        this.field_149993_M = p_149651_1_.registerIcon(this.getTextureName() + "_side_snowed");
-        this.field_149994_N = p_149651_1_.registerIcon(this.getTextureName() + "_side_overlay");
     }
+    
+    
+    
 }

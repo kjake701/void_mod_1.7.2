@@ -70,7 +70,7 @@ public class TeleporterVoid extends Teleporter
                         int l1 = j + j1;
                         int i2 = k + i1 * b1 - l * b0;
                         boolean flag = j1 < 0;
-                        this.worldServerInstance.setBlock(k1, l1, i2, (Block) (flag ? TheVoid.deadStoneBrick : 0)); //will crash
+                        this.worldServerInstance.setBlock(k1, l1, i2, flag ? TheVoid.deadStoneBrick : Blocks.air);
                     }
                 }
             }
@@ -455,7 +455,7 @@ public class TeleporterVoid extends Teleporter
                         i4 = j2 + k3;
                         j4 = k2 + (j3 - 1) * l2 - i3 * l5;
                         flag = k3 < 0;
-                        this.worldServerInstance.setBlock(l3, i4, j4, flag ? Blocks.obsidian : Blocks.air);
+                        this.worldServerInstance.setBlock(l3, i4, j4, flag ? TheVoid.deadStoneBrick : Blocks.air);
                     }
                 }
             }
@@ -471,7 +471,7 @@ public class TeleporterVoid extends Teleporter
                     i4 = j2 + k3;
                     j4 = k2 + (j3 - 1) * l2;
                     flag = j3 == 0 || j3 == 3 || k3 == -1 || k3 == 3;
-                    this.worldServerInstance.setBlock(l3, i4, j4, (Block)(flag ? Blocks.obsidian : Blocks.portal), 0, 2);
+                    this.worldServerInstance.setBlock(l3, i4, j4, (Block)(flag ? TheVoid.deadStoneBrick : TheVoid.voidPortal), 0, 2);
                 }
             }
 

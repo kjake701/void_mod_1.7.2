@@ -9,6 +9,7 @@ import thevoid.common.TheVoid;
 import thevoid.common.dimension.TeleporterVoid;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
+import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -34,7 +35,7 @@ public class BlockVoidPortal extends BlockBreakable
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabBlock);
     }
-
+    
     /**
      * Ticks the block if it's been scheduled
      */
@@ -362,14 +363,14 @@ public class BlockVoidPortal extends BlockBreakable
 
                     Block block1 = this.field_150867_a.getBlock(p_150853_1_ + j1 * i1, p_150853_2_ - 1, p_150853_3_ + k1 * i1);
 
-                    if (block1 != Blocks.obsidian)
+                    if (block1 != TheVoid.deadStoneBrick)
                     {
                         break;
                     }
                 }
 
                 block = this.field_150867_a.getBlock(p_150853_1_ + j1 * i1, p_150853_2_, p_150853_3_ + k1 * i1);
-                return block == Blocks.obsidian ? i1 : 0;
+                return block == TheVoid.deadStoneBrick ? i1 : 0;
             }
 
             protected int func_150858_a()
@@ -395,7 +396,7 @@ public class BlockVoidPortal extends BlockBreakable
                             break label56;
                         }
 
-                        if (block == Blocks.portal)
+                        if (block == TheVoid.voidPortal)
                         {
                             ++this.field_150864_e;
                         }
@@ -404,7 +405,7 @@ public class BlockVoidPortal extends BlockBreakable
                         {
                             block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockVoidPortal.field_150001_a[this.field_150865_b][0]], i, l + Direction.offsetZ[BlockVoidPortal.field_150001_a[this.field_150865_b][0]]);
 
-                            if (block != Blocks.obsidian)
+                            if (block != TheVoid.deadStoneBrick)
                             {
                                 break label56;
                             }
@@ -413,7 +414,7 @@ public class BlockVoidPortal extends BlockBreakable
                         {
                             block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockVoidPortal.field_150001_a[this.field_150865_b][1]], i, l + Direction.offsetZ[BlockVoidPortal.field_150001_a[this.field_150865_b][1]]);
 
-                            if (block != Blocks.obsidian)
+                            if (block != TheVoid.deadStoneBrick)
                             {
                                 break label56;
                             }
@@ -427,7 +428,7 @@ public class BlockVoidPortal extends BlockBreakable
                     k = this.field_150861_f.posY + this.field_150862_g;
                     l = this.field_150861_f.posZ + i * Direction.offsetZ[BlockVoidPortal.field_150001_a[this.field_150865_b][1]];
 
-                    if (this.field_150867_a.getBlock(j, k, l) != Blocks.obsidian)
+                    if (this.field_150867_a.getBlock(j, k, l) != TheVoid.deadStoneBrick)
                     {
                         this.field_150862_g = 0;
                         break;
@@ -449,7 +450,7 @@ public class BlockVoidPortal extends BlockBreakable
 
             protected boolean func_150857_a(Block p_150857_1_)
             {
-                return p_150857_1_.getMaterial() == Material.air || p_150857_1_ == Blocks.fire || p_150857_1_ == Blocks.portal;
+                return p_150857_1_.getMaterial() == Material.air || p_150857_1_ == TheVoid.voidFire || p_150857_1_ == TheVoid.voidPortal;
             }
 
             public boolean func_150860_b()
@@ -467,7 +468,7 @@ public class BlockVoidPortal extends BlockBreakable
                     for (int l = 0; l < this.field_150862_g; ++l)
                     {
                         int i1 = this.field_150861_f.posY + l;
-                        this.field_150867_a.setBlock(j, i1, k, Blocks.portal, this.field_150865_b, 2);
+                        this.field_150867_a.setBlock(j, i1, k, TheVoid.voidPortal, this.field_150865_b, 2);
                     }
                 }
             }
